@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Product Name</title>
+</head>
+<body>
+ <div class="product-details">
+    <h1>Product Name</h1>
+    <img src="product-image.jpg" alt="Product Name">
+    <p>Product Description: Provide a detailed description of the product here.</p>
+    <img src="product-image-2.jpg" alt="Product Name">
+    <img src="product-image-3.jpg" alt="Product Name">
+ </div>
+</body>
+</html>
+<div class="customer-reviews">
+ <h2>Customer Reviews</h2>
+ <div class="review">
+    <h3>Review Title</h3>
+    <p>Review Description: Provide a summary of the customer's review here.</p>
+    <p>Rating: Provide the customer's rating here (e.g., 5 out of 5 stars).</p>
+ </div>
+</div>
+<div class="product-actions">
+ <select id="product-variant">
+    <option value="default">Select Product Variant</option>
+    <option value="variant-1">Variant 1</option>
+    <option value="variant-2">Variant 2</option>
+ </select>
+ <button onclick="addToCart()">Add to Cart</button>
+ <button onclick="checkout()">Checkout</button>
+</div>
