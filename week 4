@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>To-Do List App</title>
+ <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+ <div class="container">
+    <h1>To-Do List</h1>
+    <input type="text" id="taskInput" placeholder="Enter a task...">
+    <button id="addTaskButton">Add Task</button>
+    <ul id="taskList"></ul>
+ </div>
+ <script src="app.js"></script>
+</body>
+</html>
+// app.js
+const taskInput = document.getElementById('taskInput');
+const addTaskButton = document.getElementById('addTaskButton');
+const taskList = document.getElementById('taskList');
+
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+function renderTasks() {
+ taskList.innerHTML = '';
+ tasks.forEach((task, index) => {
+    const listItem = document.createElement('li');
+    listItem.textContent = task;
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.addEventListener('click', () => {
+      tasks.splice(index, 1);
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+      renderTasks();
+    });
+    listItem.appendChild(deleteButton);
+    taskList.appendChild(listItem);
+ });
+}
+
+addTaskButton.addEventListener('click', () => {
+ tasks.push(taskInput.value);
+ taskInput.value = '';
+ localStorage.setItem('tasks', JSON.stringify(tasks));
+ renderTasks();
+});
+
+renderTasks();
+/* styles.css */
+body {
+ font-family: Arial, sans-serif;
+ background-color: #f5f5f5;
+}
+
+.container {
+ max-width: 800px;
+ margin: 0 auto;
+ padding: 2rem;
+ background-color: #fff;
+ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+ font-size: 2rem;
+ margin-bottom: 1rem;
+}
+
+input {
+ width: 100%;
+ padding: 0.5rem;
+ margin-bottom: 1rem;
+}
+
+button {
+ background-color: #4CAF50;
+ color: white;
+ padding: 0.5rem 1rem;
+ border: none;
+ cursor: pointer;
+ font-size: 1rem;
+ margin-bottom: 1rem;
+}
+
+button:hover {
+ background-color: #45a049;
+}
+
+ul {
+ list-style-type: none;
+ padding: 0;
+}
+
+li {
+ background-color: #f5f5f5;
+ padding: 0.5rem;
+ margin-bottom: 0.5rem;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+
